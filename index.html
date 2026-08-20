@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Do You Love Me?</title>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 150px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 45px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 12px 30px;
+            margin: 15px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .yes {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .no {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>💕 Do You Love Me? 💕</h1>
+
+    <button class="yes" onclick="yesClicked()">YES ❤️</button>
+    <button class="No" onclick="noClicked()">NO 😜</button>
+
+    <script>
+        function yesClicked() {
+            document.body.innerHTML =
+                "<h1>💖 then  I Love You Too! 💖</h1><p>🥰❤️ You made my day! ❤️🥰</p>";
+        }
+
+        function noClicked() {
+            document.body.innerHTML =
+                "<h1>😜 Go To Hell! 😂</h1><p>Just kidding! ❤️</p>";
+        }
+    </script>
+
+</body>
+</html>
