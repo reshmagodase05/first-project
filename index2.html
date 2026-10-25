@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Favourite Person ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --pink: #ff4f87;
+  --dark: #8e2455;
+  --cream: #fff9f5;
+}
+
+body {
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg, #ffe4ee, #f3e5ff, #fff1e8);
+  color: var(--dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.screen {
+  display: none;
+  min-height: 100vh;
+  padding: 35px 18px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.screen.active {
+  display: flex;
+  animation: fadeIn .8s ease;
+}
+
+.content {
+  width: 100%;
+  max-width: 650px;
+  margin: auto;
+}
+
+h1 {
+  font-size: clamp(30px, 7vw, 48px);
+  color: #c2185b;
+  margin: 18px 0;
+}
+
+h2 {
+  color: #c2185b;
+  margin: 18px 0;
+}
+
+p {
+  line-height: 1.8;
+  margin: 12px 0;
+}
+
+.eyebrow {
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font: 12px Arial, sans-serif;
+  color: #b04b77;
+}
+
+.btn {
+  border: none;
+  border-radius: 30px;
+  padding: 14px 25px;
+  margin: 10px 5px;
+  color: white;
+  background: linear-gradient(135deg, #ff4f87, #bd3b91);
+  box-shadow: 0 8px 20px #d94e8140;
+  transition: transform .2s;
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.03);
+}
+
+.btn.light {
+  background: white;
+  color: #c2185b;
+  border: 1px solid #ffc3d9;
+}
+
+.hero-heart {
+  font-size: 95px;
+  display: inline-block;
+  animation: heartbeat 1.3s infinite;
+}
+
+.card {
+  background: #ffffffc9;
+  border: 1px solid #ffffff;
+  border-radius: 25px;
+  padding: 25px;
+  margin: 18px auto;
+  box-shadow: 0 12px 40px #b64c7717;
+  backdrop-filter: blur(8px);
+}
+
+.floating {
+  position: fixed;
+  z-index: 0;
+  bottom: -40px;
+  pointer-events: none;
+  animation: floatUp linear forwards;
+}
+
+.heart {
+    font-size: clamp(95px, 25vw, 150px);
+    margin: 20px 0;
+    animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.candle {
+  display: inline-block;
+  animation: flicker .5s infinite alternate;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0;
+}
+
+.photo {
+  min-height: 145px;
+  aspect-ratio: 1;
+  border: 2px dashed #f3a6c4;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff4f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+}
+
+.photo span {
+  font-size: 35px;
+}
+
+.photo label {
+  position: absolute;
+  bottom: 8px;
+  z-index: 2;
+  background: #ffffffdf;
+  color: #a12b60;
+  padding: 7px 10px;
+  border-radius: 15px;
+  font: 12px Arial, sans-serif;
+  cursor: pointer;
+}
+
+.photo input {
+  display: none;
+}
+
+.envelope {
+  font-size: 110px;
+  cursor: pointer;
+  display: inline-block;
+  animation: wiggle 2s infinite;
+}
+
+.letter {
+  display: none;
+  text-align: left;
+  background: var(--cream);
+  color: #74304c;
+  border: 2px solid #f6c4d5;
+  border-radius: 18px;
+  padding: 25px;
+  line-height: 1.9;
+  box-shadow: 0 10px 35px #a52a4d22;
+  animation: fadeIn .8s ease;
+}
+
+.letter.open {
+  display: block;
+}
+
+.letter p {
+  white-space: pre-line;
+}
+
+.progress {
+  font: 12px Arial, sans-serif;
+  color: #ad4c79;
+  margin-top: 25px;
+}
+
+.heart-rain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.13); }
+}
+
+@keyframes floatUp {
+  to { transform: translateY(-115vh) rotate(360deg); opacity: 0; }
+}
+
+@keyframes cakeBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes flicker {
+  from { opacity: .7; }
+  to { opacity: 1; }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-6deg); }
+  75% { transform: rotate(6deg); }
+}
+
+@media (max-width: 380px) {
+  .card { padding: 18px; }
+  .photo-grid { gap: 8px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="heart-rain" id="heartRain"></div>
+
+<!-- PAGE 1: WELCOME -->
+<section class="screen active" id="page1">
+  <div class="content">
+    <div class="eyebrow">A little surprise for you</div>
+    <div class="hero-heart">💗</div>
+    <h1>Hii! i have A Surprise For You...</h1>
+    <p>I made something special just for you.</p>
+    <p>Ready to open your little world of love? 🥹</p>
+    <button class="btn" onclick="goTo(2)">Start Our Surprise ✨</button>
+    <div class="progress">01 · A little surprise</div>
+  </div>
+</section>
+
+<!-- PAGE 2: LOVE MESSAGE -->
+<section class="screen" id="page2">
+  <div class="content">
+    <div class="card">
+      <div style="font-size:70px">🥰</div>
+      <h1>Do You Know?</h1>
+      <p>You make ordinary moments feel special.</p>
+      <p>Your smile can make my day better, and just having you in my life means so much to me. ❤️</p>
+      <p>And guess what? There is more!</p>
+    </div>
+    <button class="btn" onclick="goTo(3)">Show Me More 💕</button>
+    <button class="btn light" onclick="goTo(1)">← Back</button>
+    <div class="progress">02 · A little love</div>
+  </div>
+</section>
+
+<!-- PAGE 3: CAKE -->
+<section class="screen" id="page3">
+  <div class="content">
+    <div class="eyebrow">Made with love</div>
+    <h1>A Sweet Surprise! ❤️</h1>
+    <div class="heart" id="cake">❤️</div>
+    <p>Make a wish, my favourite person! ✨</p>
+    <button class="btn" onclick="celebrate()">Make a Wish 🕯️</button>
+    <p id="wishMessage" aria-live="polite"></p>
+    <button class="btn" onclick="goTo(4)">Our Memories 📸</button>
+    <div class="progress">03 · A sweet moment</div>
+  </div>
+</section>
+
+<!-- PAGE 4: PHOTO GALLERY -->
+<section class="screen" id="page4">
+  <div class="content">
+    <div class="eyebrow">Little moments, big feelings</div>
+    <h1>Our Memories 📸</h1>
+    <p>Choose your favourite photos to make this page yours.</p>
+
+    <div class="photo-grid">
+      <div class="photo">
+        <span>💑</span>
+        <label>Photo 1
+          <input type="file" accept="image/*" onchange="loadPhoto(event, 0)">
+        </label>
+        <img id="photo0" alt="Our memory 1" hidden>
+      </div>
+      <div class="photo">
+        <span>🥰</span>
+        <label>Photo 2
+          <input type="file" accept="image/*" onchange="loadPhoto(event, 1)">
+        </label>
+        <img id="photo1" alt="Our memory 2" hidden>
+      </div>
+      <div class="photo">
+        <span>🌸</span>
+        <label>Photo 3
+          <input type="file" accept="image/*" onchange="loadPhoto(event, 2)">
+        </label>
+        <img id="photo2" alt="Our memory 3" hidden>
+      </div>
+      <div class="photo">
+        <span>❤️</span>
+        <label>Photo 4
+          <input type="file" accept="image/*" onchange="loadPhoto(event, 3)">
+        </label>
+        <img id="photo3" alt="Our memory 4" hidden>
+      </div>
+    </div>
+
+    <p id="photoMessage" aria-live="polite">Tap a Photo button to select a picture.</p>
+    <button class="btn" onclick="goTo(5)">One Last Surprise 💌</button>
+    <button class="btn light" onclick="goTo(3)">← Back</button>
+    <div class="progress">04 · Our memories</div>
+  </div>
+</section>
+
+<!-- PAGE 5: LOVE LETTER -->
+<section class="screen" id="page5">
+  <div class="content">
+    <div class="eyebrow">From my heart to yours</div>
+    <h1>One Last Surprise 💌</h1>
+    <p>There are some things I want you to know...</p>
+
+    <div class="envelope" onclick="openLetter()">💌</div>
+    <p>Tap the envelope to open your letter.</p>
+
+    <div class="letter" id="letter">
+      <h2>My Dearest ❤️</h2>
+
+      <p>
+You are one of the most beautiful parts of my life.
+
+Thank you for making me smile, for being there for me, and for making little moments feel magical.
+
+I may not always have the perfect words, but I hope you always remember how special you are to me.
+
+No matter how busy life gets, I hope we keep creating beautiful memories together.
+
+You are my favourite hello and my hardest goodbye.
+
+With all my love, today and always. ❤️
+      </p>
+
+      <h3 style="text-align:right; margin-top:15px">
+        Forever Yours 💗
+      </h3>
+    </div>
+
+    <button class="btn" onclick="celebrateLove()">Send You All My Love 💖</button>
+    <button class="btn light" onclick="goTo(4)">← Our Memories</button>
+    <button class="btn light" onclick="goTo(1)">Replay Surprise ↻</button>
+    <div class="progress">05 · A letter from my heart</div>
+  </div>
+</section>
+
+<script>
+function goTo(pageNumber) {
+  document.querySelectorAll(".screen").forEach(function(page) {
+    page.classList.remove("active");
+  });
+
+  document.getElementById("page" + pageNumber).classList.add("active");
+  window.scrollTo(0, 0);
+
+  if (pageNumber === 5) {
+    burstHearts(12);
+  }
+}
+
+function createHeart() {
+  const heart = document.createElement("span");
+  const hearts = ["❤️", "💕", "💗", "💖", "✨"];
+
+  heart.className = "floating";
+  heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (16 + Math.random() * 22) + "px";
+  heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(function() {
+    heart.remove();
+  }, 10000);
+}
+
+setInterval(createHeart, 650);
+
+function burstHearts(amount) {
+  for (let i = 0; i < amount; i++) {
+    setTimeout(createHeart, i * 100);
+  }
+}
+
+function celebrate() {
+  document.getElementById("cake").textContent = "💖✨💖";
+  document.getElementById("wishMessage").textContent =
+    "May all your beautiful wishes come true! 💕";
+  burstHearts(20);
+}
+
+function openLetter() {
+  document.getElementById("letter").classList.add("open");
+  burstHearts(15);
+}
+
+function celebrateLove() {
+  openLetter();
+  burstHearts(30);
+  alert("Sending you a million hugs and kisses! ❤️😘");
+}
+
+function loadPhoto(event, index) {
+  const file = event.target.files[0];
+
+  if (!file) return;
+
+  if (!file.type.startsWith("image/")) {
+    document.getElementById("photoMessage").textContent =
+      "Please choose an image file.";
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+    const img = document.getElementById("photo" + index);
+    img.src = e.target.result;
+    img.hidden = false;
+
+    document.getElementById("photoMessage").textContent =
+      "Photo " + (index + 1) + " added successfully! ❤️";
+  };
+
+  reader.readAsDataURL(file);
+}
+</script>
+
+</body>
+</html>
